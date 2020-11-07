@@ -1,9 +1,9 @@
 from http.server import HTTPServer, SimpleHTTPRequestHandler
+from pprint import pprint
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import datetime
 import pandas as pd
-from pprint import pprint
 
 wine_excel = pd.read_excel('wine2.xlsx', sheet_name='Лист1')
 
@@ -28,12 +28,6 @@ for wine in dict_wine:
 
 pprint(sored_wines)
 
-
-
-
-
-
-
 years_now = datetime.datetime.now()
 years_start = 1920
 
@@ -54,6 +48,5 @@ rendered_page = template.render(
 
 with open('index.html', 'w', encoding="utf8") as file:
     file.write(rendered_page)
-
 server = HTTPServer(('0.0.0.0', 8000), SimpleHTTPRequestHandler)
 server.serve_forever()
